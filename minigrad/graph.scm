@@ -105,10 +105,8 @@
 ;; Identity token for the empty graph
 (define graph-null '#{ %graph-null}#)
 (define (graph-null? g)
-  "Return #TRUE if the graph G is the empty graph or if it had all its
-nodes marked as deleted."
-  (or (eq? graph-null g)
-      (and (graph? g) (null? (graph-nodes g)))))
+  "Return #TRUE if the graph G is the empty graph."
+  (eq? graph-null g))
 
 ;; Validating variant of <graph> constructor.
 (define (graph-cons context graph)
