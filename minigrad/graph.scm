@@ -22,6 +22,7 @@
   #:export (graph?
             graph-null
             graph-cons
+
             contexts->graph
             context
             link
@@ -29,6 +30,7 @@
             partition-context
             delete-context
             match-context
+            find-context
 
             delete-node
 
@@ -193,6 +195,15 @@ context."
     (match (vhash-assq node (graph-nodes g))
       ((_ . (? context? c))
        (cons c (delete-context c g)))
+      (_ #false)))))
+
+(define (find-context node g)
+  "Find and return the context associated with NODE in <graph> G."
+  (cond
+   ((graph-null? g) #false)
+   (else
+    (match (vhash-assq node (graph-nodes g))
+      ((_ . (? context? c)) c)
       (_ #false)))))
 
 (define (delete-node node g)
