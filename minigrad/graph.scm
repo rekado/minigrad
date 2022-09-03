@@ -140,8 +140,8 @@ either GRAPH-NULL or a value of type <graph>."
                 "type error: first argument must be <context>, got: ~a.~%"
                 context)))))
 
-(define (contexts->graph contexts)
-  (fold graph-cons graph-null contexts))
+(define* (contexts->graph contexts #:optional (graph graph-null))
+  (fold graph-cons graph contexts))
 
 
 (define (partition-context pivot g)
