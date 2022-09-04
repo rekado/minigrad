@@ -1,0 +1,11 @@
+*.go
+configure
+Makefile
+Makefile.in
+autom4te.cache
+config.log
+config.status
+env
+install-sh
+missing
+aclocal.m4
