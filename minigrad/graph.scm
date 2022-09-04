@@ -15,6 +15,7 @@
 
 (define-module (minigrad graph)
   #:use-module (ice-9 match)
+  #:use-module (ice-9 format)
   #:use-module (ice-9 vlist)
   #:use-module (srfi srfi-1)
   #:use-module (srfi srfi-9)
