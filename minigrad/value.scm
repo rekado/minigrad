@@ -17,13 +17,19 @@
   #:use-module (srfi srfi-9)
   #:export (value
             value-data
-            value-grad))
+            value-label
+            value-grad
+            value-operation))
 
 (define-record-type <value>
-  (make-value data grad)
+  (make-value data label grad operation)
   value?
   (data value-data)
-  (grad value-grad))
+  (label value-label)
+  (grad value-grad)
+  (operation value-operation))
 
-(define* (value data #:optional (grad 0))
-  (make-value data grad))
+(define* (value data #:key label (grad 0) operation)
+  (make-value data
+              (or label (object->string data))
+              grad operation))
