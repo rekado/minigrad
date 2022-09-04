@@ -64,6 +64,7 @@ returns a new graph."
          (contexts
           (filter-map (lambda (node)
                         (or (find-context node graph)
-                            (context node (format #false "~a" node) (list) (list))))
+                            (context node (value-label node)
+                                     (list) (list))))
                       (list a b))))
     (graph-cons result-ctx (contexts->graph contexts graph))))
