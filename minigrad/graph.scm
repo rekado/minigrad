@@ -25,8 +25,8 @@
             graph-cons
 
             contexts->graph
-            context
-            link
+            context <context>
+            link <link>
 
             partition-context
             delete-context
