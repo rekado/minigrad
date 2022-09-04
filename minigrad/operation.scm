@@ -52,7 +52,8 @@ returns a new graph."
   (let* ((result-node
           (value ((operation-proc op)
                   (value-data a)
-                  (value-data b))))
+                  (value-data b))
+                 #:operation op))
          (result-ctx
           (context result-node
                    (operation-name op)
