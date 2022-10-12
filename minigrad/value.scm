@@ -15,7 +15,8 @@
 
 (define-module (minigrad value)
   #:use-module (srfi srfi-9)
-  #:export (value
+  #:export (value?
+            value
             value-data
             value-label
             value-grad
