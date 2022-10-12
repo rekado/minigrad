@@ -66,7 +66,12 @@ TODO
 @chapter Installation
 
 Use @command{guix shell -m manifest.scm} from the source directory to
-enter a development environment.
+enter a development environment.  After that tell Guile where to find
+the graphviz bindings:
+
+@example
+export GUILE_EXTENSIONS_PATH=$GUIX_ENVIRONMENT/lib/guile/3.0/extensions
+@end example
 
 Minigrad uses the GNU build system.  To install it from a release
 tarball just unpack it and run the usual commands:
