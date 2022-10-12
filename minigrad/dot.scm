@@ -49,18 +49,21 @@
                         (g:node (node g uid)))
                    (setv g:node "shape" "record")
                    (setv g:node "label"
-                         (format #false "{ ~a | data ~,4,,f | grad ~,4,,f }"
-                                 (or label "")
-                                 (value-data value)
-                                 (value-grad value)))
+                         (if (value? value)
+                             (format #false "{ ~a | data ~,4,,f | grad ~,4,,f }"
+                                     (or label "")
+                                     (value-data value)
+                                     (value-grad value))
+                             label))
 
                    ;; If this value is the result of an operation, add an op
                    ;; node and connect it.
-                   (let ((op (value-operation value)))
-                     (when op
-                       (let ((g:op-node (node g (string-append uid (operation-name op)))))
-                         (setv g:op-node "label" (operation-name op))
-                         (edge g:op-node g:node)))))))
+                   (when (value? value)
+                     (let ((op (value-operation value)))
+                       (when op
+                         (let ((g:op-node (node g (string-append uid (operation-name op)))))
+                           (setv g:op-node "label" (operation-name op))
+                           (edge g:op-node g:node))))))))
               node-contexts)
 
     ;; Connect all edges by name
@@ -70,7 +73,9 @@
                        (object->string source)
                        (string-append
                         (object->string target)
-                        (or (and=> (value-operation target) operation-name) "")))))
+                        (or (and (value? target)
+                                 (and=> (value-operation target)
+                                        operation-name)) "")))))
               edges))
 
   (layout g "dot")
