@@ -10,5 +10,4 @@ SOURCES = \
 	minigrad/libgv.scm \
 	minigrad/dot.scm
 
-
-
+info_TEXINFOS = doc/minigrad.texi
